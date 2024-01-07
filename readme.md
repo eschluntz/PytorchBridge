@@ -118,6 +118,37 @@ Here, I'm simply letting the `Least Squares` solver minimize the L2 norm of the 
 
 ![img](imgs/overconstrained.png)
 
+## Truss Optimization
+What is the "Loss Function" for a truss?
+
+- Optimize strength for a given weight?
+- Minimize weight for a given strength?
+- Strength / weight ratio?
+
+Typically this is a constrained optimization problem, but using pytorch,
+there is no easy way to add a precise constraint. Instead, I could do a 
+"relaxed constraint" where there is simply a heavy penalty for going above
+the given constraint.
+
+As written, I can provide a force, and calculate the needed "weight" based on 
+the forces in each beam.
+
+### Weight of beam, given force
+
+Tensile strength remains constant with length, because there is no risk 
+of "bending". Compression however, the same thickness beam gets weaker the 
+longer it is.
+
+Tension: `weight = length * force / tensile_strength`
+
+Compression: `weight = length * force / compression_strength(length)`
+
+`tensile_strength = 1`
+
+`compression_strength = 3 / (length + 3)`
+
+Compression: `weight = length * force * (length + 3) / 3` 
+
 # TODO
 
 [x] basic class
@@ -128,10 +159,10 @@ Here, I'm simply letting the `Least Squares` solver minimize the L2 norm of the 
     [x] render
     [x] remove from matrix equation
     [x] write test
-    [ ] print / output forces at anchors
-[ ] think about over and under specified graphs? check residuals?
+    [x] print / output forces at anchors
+[x] think about over and under specified graphs? check residuals?
 [ ] optimize!
-    [ ] write "loss" focuntion
+    [x] write "loss" focuntion
     [ ] convert variables into tensors
     [ ] switch to torch.lstqr
     [ ] format model "parameters" correctly?
