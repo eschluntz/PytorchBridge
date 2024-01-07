@@ -91,22 +91,47 @@ because it is supplied by the anchor to the ground. A full anchor
 allows both X and Y forces to be non-zero, and you can also have a
 partial anchor in just one dimension.
 
+![img](imgs/single_anchor.png)
+
+![img](imgs/double_anchor.png)
+
 Note: having more than one full anchor will make the system over-determined.
 
 In order to account for this, nodes that are full anchors can simply
 be removed from the system of equations! A partial X or Y anchor can
 just have one of its two lines removed from the system.
 
+### Underconstrained systems
+If the system is underconstrained, that means there will be some
+nodes that cannot reach equilibrium and will have a net force.
+Luckily, that is detected by the `lstsq` call, which will have a
+high residual! This should return an error.
+
+![img](imgs/underconstrained.png)
+
+### Overconstrained systems
+
+In an overconstrained system, there are many possible solutions of how force 
+could be distributed among the beams. In reality, force would be distributed based on the stiffness and displacement of each beam. See [this link](https://josecarlosbellido.files.wordpress.com/2016/04/aranda-bellido-optruss.pdf) for an example of solving this system more exactly.
+
+Here, I'm simply letting the `Least Squares` solver minimize the L2 norm of the forces, which produces a decent result.
+
+![img](imgs/overconstrained.png)
+
 # TODO
+
 [x] basic class
 [x] add and render loads
 [x] store and render forces
 [x] force solve
 [ ] handle anchor points
-    [ ] render
-    [ ] remove from matrix equation
+    [x] render
+    [x] remove from matrix equation
+    [x] write test
+    [ ] print / output forces at anchors
 [ ] think about over and under specified graphs? check residuals?
 [ ] optimize!
+    [ ] write "loss" focuntion
     [ ] convert variables into tensors
     [ ] switch to torch.lstqr
     [ ] format model "parameters" correctly?
