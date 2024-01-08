@@ -155,7 +155,7 @@ Compression: `weight = length * force * (length + 3) / 3`
 [x] add and render loads
 [x] store and render forces
 [x] force solve
-[ ] handle anchor points
+[x] handle anchor points
     [x] render
     [x] remove from matrix equation
     [x] write test
@@ -163,6 +163,10 @@ Compression: `weight = length * force * (length + 3) / 3`
 [x] think about over and under specified graphs? check residuals?
 [ ] optimize!
     [x] write "loss" focuntion
-    [ ] convert variables into tensors
-    [ ] switch to torch.lstqr
-    [ ] format model "parameters" correctly?
+    [x] convert variables into tensors
+    [x] switch to torch.lstqr
+    [x] torch lstsq is giving different outputs???
+    [x] freeze node locations that are anchors or loads
+    [x] fix draw
+    [x] fix tests
+    [ ] create functions / scripts
