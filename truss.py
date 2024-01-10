@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 import torch
 import imageio
+from IPython import display
 
 class Truss:
     def __init__(self, nodes : np.ndarray, edges : np.ndarray) -> None:
@@ -194,22 +195,22 @@ class Truss:
             cost = self.get_cost()
 
             if render:
-                plt.figure()
+                # plt.figure()
                 self.draw()
-                plt.savefig(f"{frame_folder}frame_{i}.png")
+                # plt.savefig(f"{frame_folder}frame_{i}.png")
                 display.display(plt.gcf())
                 display.clear_output(wait=True)
-                plt.close()
+                # plt.close()
 
             optimizer.zero_grad()
             cost.backward()
             optimizer.step()
 
-        if render:
-            # Compile frames into a GIF
-            frames = []
-            for i in range(n_frames):
-                frames.append(imageio.imread(f"{frame_folder}frame_{i}.png"))
-            imageio.mimsave(gif_path, frames, format='GIF', fps=30, loop=0)
+        # if render:
+        #     # Compile frames into a GIF
+        #     frames = []
+        #     for i in range(n_frames):
+        #         frames.append(imageio.imread(f"{frame_folder}frame_{i}.png"))
+        #     imageio.mimsave(gif_path, frames, format='GIF', fps=30, loop=0)
         
         return cost
