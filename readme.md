@@ -1,4 +1,5 @@
 # Torch Bridge: Optimizing Bridge trusses using Pytorch
+![img](imgs/demo.gif)
 
 ## Datastructures
 The truss is stored as a graph where each node is a connection point,
@@ -161,7 +162,7 @@ Compression: `weight = length * force * (length + 3) / 3`
     [x] write test
     [x] print / output forces at anchors
 [x] think about over and under specified graphs? check residuals?
-[ ] optimize!
+[x] optimize!
     [x] write "loss" focuntion
     [x] convert variables into tensors
     [x] switch to torch.lstqr
@@ -169,4 +170,10 @@ Compression: `weight = length * force * (length + 3) / 3`
     [x] freeze node locations that are anchors or loads
     [x] fix draw
     [x] fix tests
-    [ ] create functions / scripts
+    [x] fix
+    [x] create functions / scripts
+[ ] improve
+    [x] try different optimization? - momentum is bad
+    [ ] gradient clipping? handling nodes too close?
+    [ ] delete members that go to zero force?
+    [ ] "regularization" to keep nodes far from each other?
