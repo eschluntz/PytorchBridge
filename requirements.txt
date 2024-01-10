@@ -1,0 +1,4 @@
+torch==2.1.2
+imageio==2.33.1
+numpy==1.26.2
+matplotlib==3.8.2
