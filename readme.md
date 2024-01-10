@@ -1,6 +1,8 @@
 # Torch Bridge: Optimizing Bridge trusses using Pytorch
 ![img](imgs/demo.gif)
 
+You can use Pytorch for more than just Neural Networks - its autograd is super powerful for any problem where you need gradients! In this case, optimizing the design of a bridge truss.
+
 ## Datastructures
 The truss is stored as a graph where each node is a connection point,
 and each edge is a beam connecting two nodes. 
@@ -83,8 +85,8 @@ For each edge:
     A[n1_2 * 2 + 1][edge_i] = sin(theta n1 -> n2)
 ```
 
-NOTE: those cos/sin(theta) will be simplified to the X/Y component:
-cos(theta) == dx/sqrt(dx^2 + dy^2)
+NOTE: those cos/sin(theta) will be simplified to the X/Y component: e.g.
+`cos(theta) == dx/sqrt(dx^2 + dy^2)`
 
 ### Handling Anchor Points
 An anchor point is one where any resultant force is allowed,
