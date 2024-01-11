@@ -1,12 +1,12 @@
 # Torch Bridge: Optimizing Bridge trusses using Pytorch Autograd
 ![img](imgs/demo.gif)
 
-You can use Pytorch for more than just Neural Networks - its autograd is super powerful for any problem where you need gradients!
+You can use Pytorch for more than just Neural Networks - its autograd is super powerful for any problem where you need gradients (and are too lazy to calculate them yourself...)!
 
 This notebook first creates a Truss object, then constructs and solves a system of equations to find the force in each edge that balances each node. Finally, we sum up the "cost" of each of those edges, taking into account that compression strength goes down for longer distances.
 
 Because we can write out in closed form the "cost" of a truss, we can use autograd to calculate its gradients,
-then use an optimizer to move the nodes and lower the cost!
+then use an optimizer to move the nodes to lower the cost!
 
 ## Representing the Truss
 The truss is stored as a list of node `X,Y` coordinates, each of which is stored as a separate `torch.Tensor` so that some of their gradients can be frozen. Each edge is stored as a pair of node indexes.
